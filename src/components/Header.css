@@ -1,0 +1,49 @@
+.header-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 32px;
+  margin-right: 10px;
+}
+
+.header-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header-btn.secondary {
+  background: #333;
+  color: #fff;
+}
+
+.header-btn:hover {
+  background: #ddd;
+}
