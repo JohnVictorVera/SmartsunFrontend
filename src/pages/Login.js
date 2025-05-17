@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
+import { useAuth } from "../contexts/AuthContext";
 import "./Login.css";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [remember, setRemember] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
@@ -29,7 +31,7 @@ const Login = () => {
     e.preventDefault();
     const response = await loginUser(form.email, form.password);
     if (response && response.token) {
-      localStorage.setItem("token", response.token);
+      login(response.token);
       if (remember) {
         localStorage.setItem("rememberedEmail", form.email);
       } else {
