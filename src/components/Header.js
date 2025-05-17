@@ -56,12 +56,6 @@ const Header = () => {
             </button>
           </>
         )}
-        <button
-          className="header-btn"
-          onClick={() => navigate("/users")}
-        >
-          Teste
-        </button>
       </div>
     </header>
   );
