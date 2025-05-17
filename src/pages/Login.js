@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/api";
 import "./Login.css";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [remember, setRemember] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("rememberedEmail");
+    if (savedEmail) {
+      setForm((prev) => ({ ...prev, email: savedEmail }));
+      setRemember(true);
+    }
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleRememberChange = (e) => {
+    setRemember(e.target.checked);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Adicione aqui a lógica de autenticação
-    alert("Login realizado (exemplo)");
+    const response = await loginUser(form.email, form.password);
+    if (response && response.token) {
+      localStorage.setItem("token", response.token);
+      if (remember) {
+        localStorage.setItem("rememberedEmail", form.email);
+      } else {
+        localStorage.removeItem("rememberedEmail");
+      }
+      navigate("/");
+    } else {
+      alert("E-mail ou senha inválidos.");
+    }
   };
 
   return (
@@ -39,6 +63,28 @@ const Login = () => {
             onChange={handleChange}
             required
           />
+          <div
+            style={{
+              width: "100%",
+              marginBottom: "12px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <input
+              type="checkbox"
+              id="remember"
+              checked={remember}
+              onChange={handleRememberChange}
+              style={{ marginRight: "6px" }}
+            />
+            <label
+              htmlFor="remember"
+              style={{ fontSize: "0.95rem", color: "#555" }}
+            >
+              Lembrar-me
+            </label>
+          </div>
           <button type="submit">Acessar</button>
           <div className="login-links">
             <span

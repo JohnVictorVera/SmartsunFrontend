@@ -73,6 +73,7 @@ const UsersTable = () => {
             <th>ID</th>
             <th>Nome</th>
             <th>Email</th>
+            <th>Senha</th> {/* Adiciona a coluna Senha */}
           </tr>
         </thead>
         <tbody>
@@ -81,6 +82,7 @@ const UsersTable = () => {
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
+              <td>{user.pass}</td> {/* Exibe a senha */}
             </tr>
           ))}
         </tbody>

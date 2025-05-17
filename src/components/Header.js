@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <header className="header-navbar">
-      <div className="header-left">
+      <div className="header-left" style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
         <img src="/images/SmartsunLogo.png" alt="Smart Sun Logo" className="header-logo" />
         <span className="header-label">Smart Sun</span>
       </div>

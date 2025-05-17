@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = "http://127.0.0.1:5000"; // URL do backend
+const BACKEND_URL = "https://smartsunbackend.onrender.com"; // URL do backend
 
 export const getUsers = async () => {
   try {
@@ -38,7 +38,7 @@ export const verifyToken = async (email, code) => {
     const response = await axios.post(`${BACKEND_URL}/pass`, { email, code });
     return response.data;
   } catch (error) {
-    console.error("Erro ao verificar token:", error.response || error.message);
+    console.error("Erro ao verificar o token:", error.response || error.message);
     return null;
   }
 };
@@ -49,6 +49,16 @@ export const updatePassword = async (email, password) => {
     return response.data;
   } catch (error) {
     console.error("Erro ao atualizar senha:", error.response || error.message);
+    return null;
+  }
+};
+
+export const loginUser = async (email, password) => {
+  try {
+    const response = await axios.post(`${BACKEND_URL}/login`, { email, password });
+    return response.data; // Espera-se que retorne { token: "..." }
+  } catch (error) {
+    console.error("Erro ao fazer login:", error.response || error.message);
     return null;
   }
 };

@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import { resetPassword } from "../services/api";
+import { useNavigate } from "react-router-dom";
 import "./RecoverPass.css";
 
 const RecoverPass = () => {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await resetPassword(email);
     if (response && response.code) {
       alert(`Código de redefinição enviado para o e-mail: ${email}`);
-      // Aqui você pode redirecionar para a próxima etapa, se desejar
+      navigate("/verify-token", { state: { email } });
     } else {
       alert("Erro ao solicitar redefinição de senha.");
     }

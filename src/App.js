@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import UsersTable from "./components/UsersTable";
 import RecoverPass from "./pages/RecoverPass";
+import TokenVerify from "./pages/TokenVerify";
+import UpdatePassword from "./pages/UpdatePassword";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/recover" element={<RecoverPass />} />
         <Route path="/users" element={<UsersTable />} />
+        <Route path="/verify-token" element={<TokenVerify />} />
+        <Route path="/update-password" element={<UpdatePassword />} />
         {/* outras rotas */}
       </Routes>
     </BrowserRouter>
