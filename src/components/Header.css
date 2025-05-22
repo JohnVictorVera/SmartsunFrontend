@@ -13,7 +13,7 @@
 }
 
 .header-logo {
-  height: 32px;
+  height: 60px;
   margin-right: 10px;
 }
 
@@ -29,21 +29,29 @@
 }
 
 .header-btn {
-  padding: 8px 16px;
+  padding: 10px 26px;        
   border: none;
-  border-radius: 5px;
-  background: #f0f0f0;
-  color: #333;
+  border-radius: 50px;      
   font-weight: bold;
   cursor: pointer;
+  font-size: 15px;            
+  background: #212E5A;        
+  color: white;               
   text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .header-btn.secondary {
-  background: #333;
-  color: #fff;
+  background: #EDEDED;        
+  color: #212E5A;             
 }
 
 .header-btn:hover {
-  background: #ddd;
+  background-color: #1b2751;
+  color: white;
+}
+
+.header-btn.secondary:hover {
+  background-color: #d6d6d6;
+  color: #212E5A;
 }

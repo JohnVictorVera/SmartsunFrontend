@@ -24,6 +24,11 @@ const RecoverPass = () => {
       <Header />
       <div className="recover-container">
         <form className="recover-box" onSubmit={handleSubmit}>
+          <img
+          src="/images/forgot.png"
+          alt="Forgot Password Icon"
+          className="recover-image"
+          />
           <h2>Recuperação de senha</h2>
           <p className="recover-info">Insira o email que deseja resetar a senha</p>
           <input

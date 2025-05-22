@@ -78,7 +78,7 @@ const Login = () => {
               id="remember"
               checked={remember}
               onChange={handleRememberChange}
-              style={{ marginRight: "6px" }}
+              style={{ marginRight: "6px"}}
             />
             <label
               htmlFor="remember"
