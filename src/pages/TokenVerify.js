@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useNavigate, useLocation } from "react-router-dom";
 import { verifyToken } from "../services/api";
 import "./Register.css"; // Reaproveite o estilo
+import Footer from "../components/Footer";
 
 const TokenVerify = () => {
   const [code, setCode] = useState("");
@@ -39,6 +40,7 @@ const TokenVerify = () => {
           <button type="submit">Verificar</button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

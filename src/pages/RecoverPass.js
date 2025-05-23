@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { resetPassword } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "./RecoverPass.css";
+import Footer from "../components/Footer";
 
 const RecoverPass = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +25,11 @@ const RecoverPass = () => {
       <Header />
       <div className="recover-container">
         <form className="recover-box" onSubmit={handleSubmit}>
+          <img
+          src="/images/forgot.png"
+          alt="Forgot Password Icon"
+          className="recover-image"
+          />
           <h2>Recuperação de senha</h2>
           <p className="recover-info">Insira o email que deseja resetar a senha</p>
           <input
@@ -37,6 +43,7 @@ const RecoverPass = () => {
           <button type="submit">Próximo</button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

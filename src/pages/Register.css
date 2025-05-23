@@ -1,5 +1,5 @@
 .register-container {
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,43 +8,75 @@
 
 .register-box {
   background: #fff;
-  padding: 32px 28px;
+  padding: 40px 36px;
   border-radius: 10px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 320px;
+  min-width: 360px;
+  gap: 18px;
 }
 
 .register-box h2 {
-  margin-bottom: 24px;
   font-size: 1.5rem;
   color: #333;
 }
 
 .register-box input {
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 14px 18px;
   font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  background: #EDEDED;
+  color: #333;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.register-box input::placeholder {
+  color: #BABABA;
 }
 
 .register-box button {
   width: 100%;
-  padding: 10px 0;
-  background: #333;
+  padding: 12px 0;
+  background: #212E5A;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 50px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s;
+  margin-top: 25px;
 }
 
 .register-box button:hover {
-  background: #444;
+  background: #1a2647;
+}
+
+.register-register {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 16px;
+}
+
+.register-register-text {
+  margin-right: 4px;
+}
+
+.register-link {
+  color: #212E5A;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.register-link:hover {
+  color: #1a2647;
 }

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
 import { useAuth } from "../contexts/AuthContext";
 import "./Login.css";
+import Footer from "../components/Footer";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -65,24 +66,22 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-          <div
-            style={{
-              width: "100%",
-              marginBottom: "12px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <div className="checkbox-label">
             <input
               type="checkbox"
               id="remember"
               checked={remember}
               onChange={handleRememberChange}
-              style={{ marginRight: "6px" }}
+              style={{ margin: 0 }}
             />
             <label
               htmlFor="remember"
-              style={{ fontSize: "0.95rem", color: "#555" }}
+              style={{
+                fontSize: "0.95rem",
+                color: "#555",
+                margin: 0,
+                whiteSpace: "nowrap",
+              }}
             >
               Lembrar-me
             </label>
@@ -111,6 +110,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </>
   );
 };
