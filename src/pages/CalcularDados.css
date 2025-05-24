@@ -1,0 +1,50 @@
+.calcular-container {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+}
+
+.calcular-box {
+  background: #fff;
+  padding: 40px 36px;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  min-width: 360px;
+  text-align: center;
+}
+
+.calcular-box input[type="text"],
+.calcular-box input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.calcular-box input[type="text"]:focus,
+.calcular-box input[type="number"]:focus {
+  border: 1.5px solid #1e90ff;
+}
+
+.calcular-box button {
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: #1e90ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.calcular-box button:hover {
+  background: #156dc1;
+}
