@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { resetPassword } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "./RecoverPass.css";
+import Footer from "../components/Footer";
 
 const RecoverPass = () => {
   const [email, setEmail] = useState("");
@@ -42,6 +43,7 @@ const RecoverPass = () => {
           <button type="submit">Próximo</button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

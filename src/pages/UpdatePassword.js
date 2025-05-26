@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useNavigate, useLocation } from "react-router-dom";
 import { updatePassword } from "../services/api";
 import "./Register.css"; // Reaproveite o estilo
+import Footer from "../components/Footer";
 
 const UpdatePassword = () => {
   const [password, setPassword] = useState("");
@@ -51,6 +52,7 @@ const UpdatePassword = () => {
           <button type="submit">Atualizar Senha</button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

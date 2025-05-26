@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import { createUser } from "../services/api";
 import "./Register.css";
+import Footer from "../components/Footer";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -80,6 +81,7 @@ const Register = () => {
           <button type="submit">Registrar-se</button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

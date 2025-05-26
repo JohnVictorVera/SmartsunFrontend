@@ -41,7 +41,12 @@ const Header = () => {
           </>
         ) : (
           <>
-            <a href="#calcular" className="header-btn">Calcular</a>
+            <button
+              className="header-btn"
+              onClick={() => navigate("/calcular")}
+            >
+              Calcular
+            </button>
             <a href="#consultar" className="header-btn">Consultar</a>
             <button
               className="header-btn"

@@ -72,9 +72,11 @@
 
 .checkbox-label input[type="checkbox"] {
   order: 2;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 12px;
 }
 
 .login-links {
@@ -85,12 +87,6 @@
   font-size: 0.95rem;
   color: #212E5A;
   margin-top: 8px;
-}
-
-.login-link {
-  color: #212E5A;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .login-link:hover {
