@@ -7,6 +7,9 @@ import UsersTable from "./components/UsersTable";
 import RecoverPass from "./pages/RecoverPass";
 import TokenVerify from "./pages/TokenVerify";
 import UpdatePassword from "./pages/UpdatePassword";
+import Calcular from "./pages/Calcular";
+import CalcularDados from "./pages/CalcularDados";
+import CalcularResultado from "./pages/CalcularResultado"; // Certifique-se de que este caminho esteja correto
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/users" element={<UsersTable />} />
         <Route path="/verify-token" element={<TokenVerify />} />
         <Route path="/update-password" element={<UpdatePassword />} />
+        <Route path="/calcular" element={<Calcular />} />
+        <Route path="/calcular/dados" element={<CalcularDados />} />
+        <Route path="/calcular/resultado" element={<CalcularResultado />} />
         {/* outras rotas */}
       </Routes>
     </BrowserRouter>

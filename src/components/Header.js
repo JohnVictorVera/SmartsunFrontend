@@ -41,8 +41,18 @@ const Header = () => {
           </>
         ) : (
           <>
-            <a href="#calcular" className="header-btn">Calcular</a>
-            <a href="#consultar" className="header-btn">Consultar</a>
+            <button
+              className="header-btn"
+              onClick={() => navigate("/calcular")}
+            >
+              Calcular
+            </button>
+            <button
+              className="header-btn"
+              onClick={() => navigate("/users")}
+            >
+              Consultar
+            </button>
             <button
               className="header-btn"
               onClick={handleLogout}

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
-import { createUser } from "../services/api";
+import { createUser, loginUser } from "../services/api";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 const Register = () => {
@@ -10,6 +12,8 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,13 +31,14 @@ const Register = () => {
       password: form.password,
     });
     if (response) {
-      alert("Usuário cadastrado com sucesso!");
-      setForm({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
+      // Login automático após cadastro
+      const loginResponse = await loginUser(form.email, form.password);
+      if (loginResponse && loginResponse.token) {
+        login(loginResponse.token);
+        navigate("/");
+      } else {
+        alert("Usuário cadastrado, mas erro ao fazer login automático.");
+      }
     } else {
       alert("Erro ao cadastrar usuário.");
     }

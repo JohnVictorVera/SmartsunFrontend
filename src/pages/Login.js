@@ -65,27 +65,14 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-          <div
-            style={{
-              width: "100%",
-              marginBottom: "12px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <div className="checkbox-label">
             <input
               type="checkbox"
               id="remember"
               checked={remember}
               onChange={handleRememberChange}
-              style={{ marginRight: "6px"}}
             />
-            <label
-              htmlFor="remember"
-              style={{ fontSize: "0.95rem", color: "#555" }}
-            >
-              Lembrar-me
-            </label>
+            <label htmlFor="remember">Lembrar-me</label>
           </div>
           <button type="submit">Acessar</button>
           <div className="login-links">
