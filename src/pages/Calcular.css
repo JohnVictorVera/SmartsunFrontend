@@ -34,7 +34,7 @@
 .calcular-box button {
   width: 100%;
   padding: 12px 0;
-  background: #212E5A;
+  background: #212e5a;
   color: #fff;
   border: none;
   border-radius: 50px;
@@ -47,4 +47,13 @@
 
 .calcular-box button:hover {
   background: #1a2647;
+}
+
+@media (max-width: 600px) {
+  .calcular-box {
+    min-width: 0;
+    width: 100%;
+    padding: 24px 8px;
+    box-sizing: border-box;
+  }
 }

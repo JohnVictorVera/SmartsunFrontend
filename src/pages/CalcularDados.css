@@ -59,3 +59,12 @@
 .calcular-box button:hover {
   background: #1a2647;
 }
+
+@media (max-width: 600px) {
+  .calcular-box {
+    min-width: 0;
+    width: 100%;
+    padding: 24px 8px;
+    box-sizing: border-box;
+  }
+}
