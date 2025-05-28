@@ -10,6 +10,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 import Calcular from "./pages/Calcular";
 import CalcularDados from "./pages/CalcularDados";
 import CalcularResultado from "./pages/CalcularResultado"; // Certifique-se de que este caminho esteja correto
+import Consulta from "./pages/Consulta";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/calcular" element={<Calcular />} />
         <Route path="/calcular/dados" element={<CalcularDados />} />
         <Route path="/calcular/resultado" element={<CalcularResultado />} />
+        <Route path="/consulta" element={<Consulta />} />
         {/* outras rotas */}
       </Routes>
     </BrowserRouter>

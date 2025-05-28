@@ -32,6 +32,7 @@ const Login = () => {
     const response = await loginUser(form.email, form.password);
     if (response && response.token) {
       login(response.token);
+      localStorage.setItem("userEmail", form.email); // Salva o e-mail
       if (remember) {
         localStorage.setItem("rememberedEmail", form.email);
       } else {

@@ -1,9 +1,34 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./CalcularResultado.css";
 
 const CalcularResultado = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const resultado = location.state?.resultado;
+
+  if (!resultado) {
+    return (
+      <>
+        <Header />
+        <div className="resultado-container" style={{ justifyContent: "center" }}>
+          <div>
+            <h2>Nenhum cálculo selecionado.</h2>
+            <button onClick={() => navigate("/consulta")}>Voltar para Consulta</button>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  const { calc } = resultado;
+  const invest = calc?.invest || {};
+  const estimated = calc?.estimated || {};
+  const suggestion = calc?.suggestion || {};
+
   return (
     <>
       <Header />
@@ -12,45 +37,61 @@ const CalcularResultado = () => {
           <h3>Investimento</h3>
           <div className="resultado-item">
             <span>Estimativa de investimento</span>
-            <strong>R$ 25.000,00</strong>
+            <strong>
+              {invest.estimated ? `R$ ${Number(invest.estimated).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}` : "-"}
+            </strong>
           </div>
           <div className="resultado-item">
-            <span>Economia mensal</span>
-            <strong>R$ 350,00</strong>
+            <span>Payback</span>
+            <strong>{invest.payback ?? "-"}</strong>
           </div>
           <div className="resultado-item">
             <span>Economia anual</span>
-            <strong>R$ 4.200,00</strong>
+            <strong>
+              {invest.annualEconomy ? `R$ ${Number(invest.annualEconomy).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}` : "-"}
+            </strong>
           </div>
         </div>
         <div className="resultado-coluna">
           <h3>Estimativa Ambiental</h3>
           <div className="resultado-item">
             <span>Redução de CO₂</span>
-            <strong>1.200 kg/ano</strong>
+            <strong>
+              {estimated.co2Reduced ? `${estimated.co2Reduced} kg/ano` : "-"}
+            </strong>
           </div>
           <div className="resultado-item">
             <span>Árvores plantadas</span>
-            <strong>85</strong>
+            <strong>
+              {estimated.treePlanted ? estimated.treePlanted : "-"}
+            </strong>
           </div>
           <div className="resultado-item">
             <span>Redução de combustível fóssil</span>
-            <strong>500 L/ano</strong>
+            <strong>
+              {estimated.reduction ? `${estimated.reduction} L/ano` : "-"}
+            </strong>
           </div>
         </div>
         <div className="resultado-coluna">
           <h3>Sistema Indicado</h3>
           <div className="resultado-item">
             <span>Geração mensal</span>
-            <strong>500 kWh</strong>
+            <strong>
+              {suggestion.monthly ? `${suggestion.monthly} kWh` : "-"}
+            </strong>
           </div>
           <div className="resultado-item">
             <span>Potência da placa</span>
-            <strong>550 Wp</strong>
+            <strong>
+              {suggestion.potency ? `${suggestion.potency} Wp` : "-"}
+            </strong>
           </div>
           <div className="resultado-item">
             <span>Quantidade de placas</span>
-            <strong>10</strong>
+            <strong>
+              {suggestion.quantity ?? "-"}
+            </strong>
           </div>
         </div>
       </div>

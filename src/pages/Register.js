@@ -35,6 +35,7 @@ const Register = () => {
       const loginResponse = await loginUser(form.email, form.password);
       if (loginResponse && loginResponse.token) {
         login(loginResponse.token);
+        localStorage.setItem("userEmail", form.email); // Salva o e-mail
         navigate("/");
       } else {
         alert("Usuário cadastrado, mas erro ao fazer login automático.");

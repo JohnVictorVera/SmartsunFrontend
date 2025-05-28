@@ -12,6 +12,16 @@ export const getUsers = async () => {
   }
 };
 
+export const getUserByEmail = async (email) => {
+  try {
+    const response = await axios.get(`${BACKEND_URL}/user/${email}`);
+    return response.data; // Retorna os dados do usuário
+  } catch (error) {
+    console.error("Erro ao buscar usuário por email:", error.response || error.message);
+    return null; // Retorna null se não encontrar o usuário
+  }
+}
+
 export const createUser = async (userData) => {
   try {
     const response = await axios.post(`${BACKEND_URL}/user`, userData);

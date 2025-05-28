@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./CalcularDados.css"; // Estilos específicos para a página de cálculo
 
 const CalcularDados = () => {
@@ -24,16 +25,33 @@ const CalcularDados = () => {
   // Para enviar ao backend, use:
   const getCepNumerico = () => cep.replace(/\D/g, "");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const cepNumerico = getCepNumerico();
     if (cepNumerico.length !== 8) {
       alert("CEP deve conter 8 dígitos numéricos.");
       return;
     }
-    // Aqui você pode enviar cepNumerico para o backend
-    alert("CEP enviado: " + cepNumerico);
-    navigate("/calcular/resultado"); // Exemplo de próxima etapa
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "https://smartsunbackend.onrender.com/solar/calculate",
+        {
+          cep: cepNumerico,
+          consumo: Number(kwh),
+          cost: Number(tarifa)
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+      navigate("/calcular/resultado", { state: { resultado: response.data } });
+    } catch (error) {
+      alert("Erro ao calcular. Tente novamente.");
+      console.error(error);
+    }
   };
 
   // Função para tratar a tarifa
