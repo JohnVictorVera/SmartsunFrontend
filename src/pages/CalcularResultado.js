@@ -1,15 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./CalcularResultado.css";
 
 const CalcularResultado = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const resultado = location.state?.resultado;
+  const id = location.state?.resultado?.id; // Recebe o id do cálculo
+  const [resultado, setResultado] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!resultado) {
+  useEffect(() => {
+    const fetchResultado = async () => {
+      if (!id) {
+        setLoading(false);
+        return;
+      }
+      try {
+        const response = await axios.get(`https://smartsunbackend.onrender.com/solar/details/${id}`);
+        // Corrija aqui:
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setResultado(response.data[0]);
+        } else {
+          setResultado(null);
+        }
+      } catch (error) {
+        setResultado(null);
+      }
+      setLoading(false);
+    };
+    fetchResultado();
+  }, [id]);
+
+  useEffect(() => {
+    if (!id) {
+      navigate("/consulta");
+    }
+  }, [id, navigate]);
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <div className="resultado-container" style={{ justifyContent: "center" }}>
+          <div>
+            <h2>Carregando resultado...</h2>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  if (!resultado || !resultado.calc) {
     return (
       <>
         <Header />
@@ -24,10 +69,10 @@ const CalcularResultado = () => {
     );
   }
 
-  const { calc } = resultado;
-  const invest = calc?.invest || {};
-  const estimated = calc?.estimated || {};
-  const suggestion = calc?.suggestion || {};
+  // Use resultado.calc para acessar os dados:
+  const invest = resultado.calc.invest || {};
+  const estimated = resultado.calc.estimated || {};
+  const suggestion = resultado.calc.suggestion || {};
 
   return (
     <>

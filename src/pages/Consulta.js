@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Consulta.css";
 
 const Consulta = () => {
   const [calculos, setCalculos] = useState([]);
@@ -14,7 +15,7 @@ const Consulta = () => {
       if (!email) return;
       try {
         const response = await axios.get(`https://smartsunbackend.onrender.com/solar/calculate/${email}`);
-        setCalculos(response.data.data || []);
+        setCalculos(response.data || []);
       } catch (error) {
         setCalculos([]);
       }
@@ -26,8 +27,7 @@ const Consulta = () => {
   const formatarData = (dataString) => {
     if (!dataString) return "-";
     const data = new Date(dataString);
-    // Ajusta para UTC-3
-    data.setHours(data.getHours() - 3);
+    data.setHours(data.getHours() - 3); // Ajusta para UTC-3
     const dia = String(data.getDate()).padStart(2, "0");
     const mes = String(data.getMonth() + 1).padStart(2, "0");
     const ano = data.getFullYear();
@@ -47,7 +47,7 @@ const Consulta = () => {
             <button
               key={calc.id}
               className="consulta-card"
-              onClick={() => navigate("/calcular/resultado", { state: { resultado: calc } })}
+              onClick={() => navigate("/calcular/resultado", { state: { resultado: { id: calc.id } } })}
               type="button"
             >
               <span className="consulta-card-numero">
