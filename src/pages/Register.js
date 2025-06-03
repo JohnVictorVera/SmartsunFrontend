@@ -21,24 +21,43 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.name || !form.email || !form.password || !form.confirmPassword) {
+      alert("Preencha todos os campos.");
+      return;
+    }
     if (form.password !== form.confirmPassword) {
       alert("As senhas não coincidem.");
       return;
     }
-    const response = await createUser({
+    // Log para depuração
+    console.log({
       name: form.name,
       email: form.email,
       password: form.password,
     });
+    const response = await createUser({
+      name: form.name,
+      email: form.email,
+      pass: form.password, // <-- CORRETO para o backend atual
+    });
     if (response) {
       // Login automático após cadastro
-      const loginResponse = await loginUser(form.email, form.password);
-      if (loginResponse && loginResponse.token) {
-        login(loginResponse.token);
-        localStorage.setItem("userEmail", form.email); // Salva o e-mail
-        navigate("/");
-      } else {
+      try {
+        const loginResponse = await loginUser(form.email, form.password);
+        console.log("loginResponse", loginResponse);
+        if (loginResponse && loginResponse.token) {
+          login(loginResponse.token);
+          localStorage.setItem("userEmail", form.email); // Salva o e-mail
+          navigate("/");
+          return; // <-- Adicione este return!
+        } else {
+          alert("Usuário cadastrado, mas erro ao fazer login automático.");
+          return; // <-- E este return!
+        }
+      } catch (error) {
+        console.error("Erro ao fazer login automático:", error);
         alert("Usuário cadastrado, mas erro ao fazer login automático.");
+        return;
       }
     } else {
       alert("Erro ao cadastrar usuário.");

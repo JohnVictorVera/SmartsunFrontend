@@ -1,3 +1,8 @@
+.resultado-header {
+  padding: 24px;
+  text-align: center;
+}
+
 .resultado-container {
   display: flex;
   justify-content: center;
@@ -23,6 +28,12 @@
   margin-bottom: 12px;
   color: #212E5A; /* Azul escuro do botão */
   font-size: 1.4rem;
+}
+
+.resultado-header h1 {
+  font-size: 1.8rem;
+  color: #212E5A; /* Azul escuro do botão */
+  margin-bottom: 16px;
 }
 
 .resultado-item {

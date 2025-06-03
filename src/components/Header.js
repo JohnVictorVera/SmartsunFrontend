@@ -86,7 +86,7 @@ const Header = () => {
           </>
         )}
         {isLoggedIn && userName && (
-          <span style={{ marginLeft: 16, fontWeight: 500, color: "#212E5A", whiteSpace: "nowrap" }}>
+          <span style={{ marginLeft: 16, fontWeight: "bold", color: "#212E5A", whiteSpace: "nowrap" }}>
             Olá, {userName}!
           </span>
         )}

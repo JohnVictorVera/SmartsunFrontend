@@ -66,7 +66,7 @@ export const updatePassword = async (email, password) => {
 export const loginUser = async (email, password) => {
   try {
     const response = await axios.post(`${BACKEND_URL}/login`, { email, password });
-    return response.data; // Espera-se que retorne { token: "..." }
+    return response.data;
   } catch (error) {
     console.error("Erro ao fazer login:", error.response || error.message);
     return null;

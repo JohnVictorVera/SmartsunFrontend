@@ -38,7 +38,7 @@ const CalcularDados = () => {
         "https://smartsunbackend.onrender.com/solar/calculate",
         {
           cep: cepNumerico,
-          consumo: Number(kwh),
+          consumo: parseFloat(kwh), // agora aceita float
           cost: Number(tarifa)
         },
         {
@@ -87,16 +87,17 @@ const CalcularDados = () => {
               required
             />
             <input
-                  type="text"
+              type="text"
               placeholder="Consumo mensal (kWh)"
               value={kwh}
               onChange={e => {
-                // Remove tudo que não for número
-                const value = e.target.value.replace(/\D/g, "");
+                // Permite números, ponto e vírgula
+                let value = e.target.value.replace(/[^0-9.,]/g, "");
+                // Troca vírgula por ponto para padronizar
+                value = value.replace(",", ".");
                 setKwh(value);
               }}
-              inputMode="numeric"
-              pattern="[0-9]*"
+              inputMode="decimal"
               required
             />
             <input

@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CalcularResultado.css";
+import EconomiaAcumuladaPaybackChart from "../components/EconomiaAcumuladaPaybackChart";
+import ComoChegamosResultado from "../components/ComoChegamosResultado";
 
 const CalcularResultado = () => {
   const location = useLocation();
@@ -77,6 +79,9 @@ const CalcularResultado = () => {
   return (
     <>
       <Header />
+      <div className="resultado-header">
+        <h1>Resultado do Cálculo</h1>
+      </div>
       <div className="resultado-container">
         <div className="resultado-coluna">
           <h3>Investimento</h3>
@@ -140,9 +145,15 @@ const CalcularResultado = () => {
           </div>
         </div>
       </div>
+      <EconomiaAcumuladaPaybackChart
+            investimento={invest.estimated}
+            economiaAnual={invest.annualEconomy}
+            payback={invest.payback}
+      />
+      <ComoChegamosResultado>
+      </ComoChegamosResultado>
+        </>
+      )}
       <Footer />
-    </>
-  );
-};
 
 export default CalcularResultado;

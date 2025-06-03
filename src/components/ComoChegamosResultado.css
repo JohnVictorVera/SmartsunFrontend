@@ -1,0 +1,54 @@
+.como-chegamos-section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(0,0,0,0.05);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: black;
+  line-height: 1.6;
+}
+
+.como-chegamos-section h1 {
+    text-align: center;
+    color: #212E5A;
+}
+
+.como-chegamos-section h2 {
+  margin-top: 1.5rem;
+  color: #212E5A;
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: left;
+}
+
+.como-chegamos-section ul {
+  margin-top: 0.5rem;
+  padding-left: 1.2rem;
+}
+
+.como-chegamos-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.como-chegamos-section p {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  font-family: inherit;
+}
+
+.como-chegamos-formula {
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: #212E5A;
+  background: #f3f6fa;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  max-width: 500px;
+}
