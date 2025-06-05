@@ -35,7 +35,7 @@ const Register = () => {
     const response = await createUser({
       name: form.name,
       email: form.email,
-      pass: form.password,
+      password: form.password, // <-- use 'password' e não 'pass'
     });
     if (response) {
       try {
