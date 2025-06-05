@@ -3,7 +3,7 @@ import "./ComoChegamosResultado.css";
 
 const ComoChegamosResultado = ({ children }) => (
   <section className="como-chegamos-section">
-    <h1>Como funciona o cálculo</h1>
+    <h2>Como funciona o cálculo</h2>
     <p>
       Ao informar seu CEP, consumo mensal e tarifa de energia, localizamos sua posição geográfica e consultamos a base da NASA para obter a irradiação solar média histórica da sua região.
       A produção de energia por placa é estimada com base na menor média mensal histórica, adotando um cenário conservador.

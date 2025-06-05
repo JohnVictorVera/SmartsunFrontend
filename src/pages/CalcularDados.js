@@ -6,25 +6,26 @@ import axios from "axios";
 import "./CalcularDados.css"; // Estilos específicos para a página de cálculo
 
 const CalcularDados = () => {
+  // Estados dos campos do formulário
   const [cep, setCep] = useState("");
   const [kwh, setKwh] = useState("");
   const [tarifa, setTarifa] = useState("");
   const navigate = useNavigate();
 
-  // Função para tratar o CEP
+  // Trata o campo de CEP, permitindo apenas números e adicionando traço
   const handleCepChange = (e) => {
-    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
-    value = value.slice(0, 8); // Limita a 8 dígitos
-    // Adiciona o traço visual após o quinto dígito
+    let value = e.target.value.replace(/\D/g, "");
+    value = value.slice(0, 8);
     if (value.length > 5) {
       value = value.slice(0, 5) + "-" + value.slice(5);
     }
     setCep(value);
   };
 
-  // Para enviar ao backend, use:
+  // Remove caracteres não numéricos do CEP para enviar ao backend
   const getCepNumerico = () => cep.replace(/\D/g, "");
 
+  // Envia os dados do formulário para o backend e navega para o resultado
   const handleSubmit = async (e) => {
     e.preventDefault();
     const cepNumerico = getCepNumerico();
@@ -38,7 +39,7 @@ const CalcularDados = () => {
         "https://smartsunbackend.onrender.com/solar/calculate",
         {
           cep: cepNumerico,
-          consumo: parseFloat(kwh), // agora aceita float
+          consumo: parseFloat(kwh),
           cost: Number(tarifa)
         },
         {
@@ -47,19 +48,17 @@ const CalcularDados = () => {
           }
         }
       );
+      // Navega para a página de resultado, passando os dados recebidos
       navigate("/calcular/resultado", { state: { resultado: response.data } });
     } catch (error) {
       alert("Erro ao calcular. Tente novamente.");
-      console.error(error);
     }
   };
 
-  // Função para tratar a tarifa
+  // Trata o campo de tarifa, permitindo apenas números e formatando para reais
   const handleTarifaChange = (e) => {
-    let value = e.target.value.replace(/\D/g, ""); // Apenas números
-    // Limita a 6 dígitos (opcional)
+    let value = e.target.value.replace(/\D/g, "");
     value = value.slice(0, 6);
-    // Formata para reais (centavos)
     if (value) {
       value = (parseInt(value, 10) / 100).toFixed(2);
     } else {
@@ -83,7 +82,7 @@ const CalcularDados = () => {
               placeholder="CEP"
               value={cep}
               onChange={handleCepChange}
-              maxLength={9} // 8 dígitos + 1 traço
+              maxLength={9}
               required
             />
             <input
@@ -91,9 +90,7 @@ const CalcularDados = () => {
               placeholder="Consumo mensal (kWh)"
               value={kwh}
               onChange={e => {
-                // Permite números, ponto e vírgula
                 let value = e.target.value.replace(/[^0-9.,]/g, "");
-                // Troca vírgula por ponto para padronizar
                 value = value.replace(",", ".");
                 setKwh(value);
               }}

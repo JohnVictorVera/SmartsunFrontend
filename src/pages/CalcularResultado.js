@@ -8,12 +8,14 @@ import EconomiaAcumuladaPaybackChart from "../components/EconomiaAcumuladaPaybac
 import ComoChegamosResultado from "../components/ComoChegamosResultado";
 
 const CalcularResultado = () => {
+  // Recebe o id do cálculo via navegação
   const location = useLocation();
   const navigate = useNavigate();
-  const id = location.state?.resultado?.id; // Recebe o id do cálculo
+  const id = location.state?.resultado?.id;
   const [resultado, setResultado] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Busca os detalhes do cálculo no backend ao carregar a página
   useEffect(() => {
     const fetchResultado = async () => {
       if (!id) {
@@ -22,7 +24,7 @@ const CalcularResultado = () => {
       }
       try {
         const response = await axios.get(`https://smartsunbackend.onrender.com/solar/details/${id}`);
-        // Corrija aqui:
+        // O backend retorna um array, pega o primeiro elemento
         if (Array.isArray(response.data) && response.data.length > 0) {
           setResultado(response.data[0]);
         } else {
@@ -36,12 +38,14 @@ const CalcularResultado = () => {
     fetchResultado();
   }, [id]);
 
+  // Se não houver id, redireciona para a consulta
   useEffect(() => {
     if (!id) {
       navigate("/consulta");
     }
   }, [id, navigate]);
 
+  // Exibe loading enquanto busca os dados
   if (loading) {
     return (
       <>
@@ -56,6 +60,7 @@ const CalcularResultado = () => {
     );
   }
 
+  // Se não houver resultado, exibe mensagem e botão para voltar
   if (!resultado || !resultado.calc) {
     return (
       <>
@@ -71,7 +76,7 @@ const CalcularResultado = () => {
     );
   }
 
-  // Use resultado.calc para acessar os dados:
+  // Extrai os dados do resultado para exibição
   const invest = resultado.calc.invest || {};
   const estimated = resultado.calc.estimated || {};
   const suggestion = resultado.calc.suggestion || {};
@@ -145,15 +150,17 @@ const CalcularResultado = () => {
           </div>
         </div>
       </div>
+      {/* Gráfico de economia acumulada e payback */}
       <EconomiaAcumuladaPaybackChart
             investimento={invest.estimated}
             economiaAnual={invest.annualEconomy}
             payback={invest.payback}
       />
-      <ComoChegamosResultado>
-      </ComoChegamosResultado>
-        </>
-      )}
+      {/* Explicação dos cálculos */}
+      <ComoChegamosResultado />
       <Footer />
+    </>
+  );
+};
 
 export default CalcularResultado;

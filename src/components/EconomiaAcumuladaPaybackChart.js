@@ -1,10 +1,8 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, ReferenceDot } from 'recharts';
 
+// Componente de gráfico que mostra a economia acumulada e o ano do payback
 const EconomiaAcumuladaChart = ({ economiaAnual, investimento, anos = 10 }) => {
-  // Ano atual
   const anoAtual = new Date().getFullYear();
-
-  // Gera dados para 10 anos, usando anos reais
   const data = [];
   let acumulado = 0;
   let paybackAno = null;
@@ -12,7 +10,7 @@ const EconomiaAcumuladaChart = ({ economiaAnual, investimento, anos = 10 }) => {
     acumulado += economiaAnual;
     if (!paybackAno && acumulado >= investimento) paybackAno = i;
     data.push({
-      ano: anoAtual + i, // Exibe 2026, 2027, etc.
+      ano: anoAtual + i,
       economia: acumulado
     });
   }

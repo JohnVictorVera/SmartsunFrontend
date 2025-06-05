@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 const Register = () => {
+  // Estado do formulário de cadastro
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,10 +16,12 @@ const Register = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  // Atualiza o estado do formulário conforme o usuário digita
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Envia os dados para cadastro e faz login automático
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.password || !form.confirmPassword) {
@@ -29,33 +32,25 @@ const Register = () => {
       alert("As senhas não coincidem.");
       return;
     }
-    // Log para depuração
-    console.log({
-      name: form.name,
-      email: form.email,
-      password: form.password,
-    });
     const response = await createUser({
       name: form.name,
       email: form.email,
-      pass: form.password, // <-- CORRETO para o backend atual
+      pass: form.password,
     });
     if (response) {
-      // Login automático após cadastro
       try {
+        // Login automático após cadastro
         const loginResponse = await loginUser(form.email, form.password);
-        console.log("loginResponse", loginResponse);
         if (loginResponse && loginResponse.token) {
           login(loginResponse.token);
-          localStorage.setItem("userEmail", form.email); // Salva o e-mail
+          localStorage.setItem("userEmail", form.email);
           navigate("/");
-          return; // <-- Adicione este return!
+          return;
         } else {
           alert("Usuário cadastrado, mas erro ao fazer login automático.");
-          return; // <-- E este return!
+          return;
         }
       } catch (error) {
-        console.error("Erro ao fazer login automático:", error);
         alert("Usuário cadastrado, mas erro ao fazer login automático.");
         return;
       }

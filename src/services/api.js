@@ -35,7 +35,6 @@ export const createUser = async (userData) => {
 export const resetPassword = async (email) => {
   try {
     const response = await axios.get(`${BACKEND_URL}/pass/${email}`);
-    console.log("Resposta do backend:", response.data); // Log para depuração
     return response.data;
   } catch (error) {
     console.error("Erro ao solicitar redefinição de senha:", error.response || error.message);

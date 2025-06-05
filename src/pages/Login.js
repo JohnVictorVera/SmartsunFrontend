@@ -6,11 +6,14 @@ import { useAuth } from "../contexts/AuthContext";
 import "./Login.css";
 
 const Login = () => {
+  // Estado do formulário de login
   const [form, setForm] = useState({ email: "", password: "" });
+  // Estado do checkbox "Lembrar-me"
   const [remember, setRemember] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  // Ao carregar, verifica se há e-mail salvo para preencher automaticamente
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
     if (savedEmail) {
@@ -19,20 +22,25 @@ const Login = () => {
     }
   }, []);
 
+  // Atualiza o estado do formulário conforme o usuário digita
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Atualiza o estado do checkbox "Lembrar-me"
   const handleRememberChange = (e) => {
     setRemember(e.target.checked);
   };
 
+  // Envia o formulário de login
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await loginUser(form.email, form.password);
     if (response && response.token) {
+      // Salva o token no contexto global e localStorage
       login(response.token);
-      localStorage.setItem("userEmail", form.email); // Salva o e-mail
+      localStorage.setItem("userEmail", form.email);
+      // Salva ou remove o e-mail do "Lembrar-me"
       if (remember) {
         localStorage.setItem("rememberedEmail", form.email);
       } else {

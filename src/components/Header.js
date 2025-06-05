@@ -9,13 +9,13 @@ const Header = () => {
   const { isLoggedIn, logout } = useAuth();
   const [userName, setUserName] = useState("");
 
+  // Busca o nome do usuário logado para exibir no header
   useEffect(() => {
     const fetchUserName = async () => {
       if (isLoggedIn) {
         const email = localStorage.getItem("userEmail");
         if (email) {
           const user = await getUserByEmail(email);
-          console.log("Usuário retornado:", user);
           if (user && Array.isArray(user) && user.length > 0 && user[0].name) {
             setUserName(user[0].name);
           }
@@ -25,11 +25,13 @@ const Header = () => {
     fetchUserName();
   }, [isLoggedIn]);
 
+  // Realiza logout e redireciona para a home
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
+  // Troca de conta: faz logout e redireciona para login
   const handleSwitchAccount = () => {
     logout();
     navigate("/login");
@@ -42,6 +44,7 @@ const Header = () => {
         <span className="header-label">Smart Sun</span>
       </div>
       <div className="header-right">
+        {/* Exibe botões diferentes conforme o usuário está logado ou não */}
         {!isLoggedIn ? (
           <>
             <button
@@ -85,6 +88,7 @@ const Header = () => {
             </button>
           </>
         )}
+        {/* Exibe o nome do usuário logado */}
         {isLoggedIn && userName && (
           <span style={{ marginLeft: 16, fontWeight: "bold", color: "#212E5A", whiteSpace: "nowrap" }}>
             Olá, {userName}!
