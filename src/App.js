@@ -25,7 +25,6 @@ function App() {
         <Route path="/calcular/dados" element={<CalcularDados />} />
         <Route path="/calcular/resultado" element={<CalcularResultado />} />
         <Route path="/consulta" element={<Consulta />} />
-        {/* outras rotas */}
       </Routes>
     </BrowserRouter>
   );
