@@ -2,6 +2,8 @@
 
 Este é o frontend do projeto **Smart Sun**, uma aplicação web desenvolvida em React para auxiliar usuários no cálculo, consulta e acompanhamento de sistemas de energia solar. O sistema permite que o usuário cadastre-se, faça login, recupere senha, realize simulações de economia com energia solar e visualize resultados detalhados, incluindo impacto ambiental e retorno do investimento.
 
+Foi desenvolvido para fins estudantis e apresentando no dia 05/06/2025 na Fundação Hermínio Ometto.
+
 ## Funcionalidades
 
 - Cadastro e autenticação de usuários
@@ -31,10 +33,6 @@ A aplicação estará disponível em [http://localhost:3000](http://localhost:30
 - `public/`: Arquivos estáticos e imagens
 - `package.json`: Dependências e scripts do projeto
 
-## Requisitos
 
-Veja o arquivo `requirements.txt` para as dependências principais do frontend.
-
----
 
 Desenvolvido com [Create React App](https://github.com/facebook/create-react-app).
